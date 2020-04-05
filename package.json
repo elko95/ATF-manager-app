@@ -1,0 +1,26 @@
+{
+  "name": "aatf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "env-cmd": "^8.0.2",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "accesscontrol": "^2.2.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.4",
+    "validator": "^10.9.0"
+  },
+  "description": ""
+}
