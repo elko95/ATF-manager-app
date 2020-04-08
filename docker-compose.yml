@@ -1,23 +1,32 @@
 version: "3.5"
 services:
-  app:
-    image: elko95/aatf2-app
-    restart: always
-    build: .
-    ports:
-      - "3001:3001"
-    links:
-      - mongodb
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017/AATF
-  mongodb:
+ web_app:
+  image: mmouatta/data_api
+  ports:
+   - "4000:4000"
+  volumes:
+   - .:/app
+  environment:
+   - ENV=development
+   - PORT=4000
+   - DB=mongodb://mongodb:27017/AATF
+   - SECRET=MOUATTAMAHDI
+ app:
+  image: elko95/aatf2-app:latest
+  ports:
+   - "3001:3001"
+  links:
+   - mongodb
+  environment:
+   - MONGODB_URL=mongodb://mongodb:27017/AATF
+ mongodb:
   image: mongo:4.0
   container_name: "mongodb"
   environment:
-    - MONGO_DATA_DIR=/usr/data/db
-    - MONGO_LOG_DIR=/dev/null
+   - MONGO_DATA_DIR=/usr/data/db
+   - MONGO_LOG_DIR=/dev/null
   volumes:
-    - ./data/db:/usr/data/db
+   - ./data/db:/usr/data/db
   ports:
-    - 27017:27017
+   - 27017:27017
   command: mongod --smallfiles --logpath=/dev/null # --quiet
