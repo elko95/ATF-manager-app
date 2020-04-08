@@ -5,10 +5,8 @@ const tableRouter = require("./routers/table");
 const processusRouter = require("./routers/processus");
 const domaineRouter = require("./routers/domaine");
 const app = express();
-const cors = require("cors");
-const port = process.env.PORT;
 
-app.use(cors());
+const port = process.env.PORT;
 
 //CORS V1
 
