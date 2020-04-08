@@ -10,8 +10,8 @@ router.options("/users/login", cors());
 router.options("/users/logout", cors());
 router.options("/users/logoutAll", cors());
 router.options("/user", cors());
-router.options("/users/me", cors());
 router.options("/users/:id", cors());
+router.options("/users/me", cors());
 
 // POST /users
 
