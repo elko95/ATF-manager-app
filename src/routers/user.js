@@ -4,9 +4,9 @@ const router = new express.Router();
 const User = require("../models/user");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
-
+const cors = require("cors");
 // POST /users
-
+router.options("/users/login", cors());
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
   try {
@@ -20,7 +20,7 @@ router.post("/users", async (req, res) => {
 });
 
 //POST /users/login
-router.post("/users/login", async (req, res) => {
+router.post("/users/login", cors(), async (req, res) => {
   try {
     const user = await User.findByCredentials(
       req.body.matricule,
@@ -37,7 +37,7 @@ router.post("/users/login", async (req, res) => {
 
 router.post("/users/logout", auth, async (req, res) => {
   try {
-    req.user.tokens = req.user.tokens.filter(token => {
+    req.user.tokens = req.user.tokens.filter((token) => {
       return token.token != req.token;
     });
     await req.user.save();
@@ -146,9 +146,9 @@ router.patch(
       "email",
       "domaine",
       "role",
-      "password"
+      "password",
     ];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -156,7 +156,7 @@ router.patch(
     }
     try {
       const user = await User.findById(req.params.id);
-      updates.forEach(update => {
+      updates.forEach((update) => {
         user[update] = req.body[update];
       });
       await user.save();
@@ -211,9 +211,9 @@ router.patch(
       "email",
       "domaine",
       "role",
-      "password"
+      "password",
     ];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -221,7 +221,7 @@ router.patch(
     }
     try {
       const user = await User.findOne({ matricule: req.query.matricule });
-      updates.forEach(update => {
+      updates.forEach((update) => {
         user[update] = req.body[update];
       });
       await user.save();
@@ -248,7 +248,7 @@ router.delete(
   async (req, res) => {
     try {
       const user = await User.findOneAndDelete({
-        matricule: req.query.matricule
+        matricule: req.query.matricule,
       });
       if (!user) {
         return res.status(404).send({ error: "user not found" });

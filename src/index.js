@@ -8,8 +8,9 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT;
 
-// Create express server
 app.use(cors());
+
+//CORS V1
 
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
