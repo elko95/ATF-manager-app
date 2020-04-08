@@ -5,9 +5,14 @@ const User = require("../models/user");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
 const cors = require("cors");
-router.options("*", cors());
+router.options("/users", cors());
+router.options("/users/login", cors());
+router.options("/users/logout", cors());
+router.options("/users/logoutAll", cors());
 router.options("/user", cors());
+router.options("/users/me", cors());
 router.options("/users/:id", cors());
+
 // POST /users
 
 router.post("/users", cors(), async (req, res) => {
