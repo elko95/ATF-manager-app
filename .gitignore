@@ -1,5 +1,4 @@
 node_modules
 config
 .dockerignore
-docker-compose.yml
-Dockerfile
+
