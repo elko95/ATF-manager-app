@@ -7,6 +7,7 @@ const userController = require("../controllers/userController");
 const cors = require("cors");
 router.options("*", cors());
 router.options("/user", cors());
+router.options("/users/:id", cors());
 // POST /users
 
 router.post("/users", cors(), async (req, res) => {
