@@ -5,9 +5,10 @@ const User = require("../models/user");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
 const cors = require("cors");
+router.options("*", cors());
 // POST /users
-router.options("/users/login", cors());
-router.post("/users", async (req, res) => {
+
+router.post("/users", cors(), async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -35,7 +36,7 @@ router.post("/users/login", cors(), async (req, res) => {
 
 //POST /users/logout
 
-router.post("/users/logout", auth, async (req, res) => {
+router.post("/users/logout", cors(), auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token != req.token;
@@ -48,7 +49,7 @@ router.post("/users/logout", auth, async (req, res) => {
 });
 
 //POST /users/logoutAll
-router.post("/users/logoutAll", auth, async (req, res) => {
+router.post("/users/logoutAll", cors(), auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
@@ -61,6 +62,7 @@ router.post("/users/logoutAll", auth, async (req, res) => {
 // GET /users/me
 router.get(
   "/users/me",
+  cors(),
   auth,
   userController.grantAccess("readOwn", "profile"),
   async (req, res) => {
@@ -71,6 +73,7 @@ router.get(
 // GET /users
 router.get(
   "/users",
+  cors(),
   auth,
   userController.grantAccess("readAny", "profile"),
   async (req, res) => {
@@ -87,6 +90,7 @@ router.get(
 
 router.get(
   "/users/:id",
+  cors(),
   auth,
   userController.grantAccess("readAny", "profile"),
   async (req, res) => {
@@ -112,6 +116,7 @@ router.get(
 
 router.get(
   "/user",
+  cors(),
   auth,
   userController.grantAccess("readAny", "profile"),
   async (req, res) => {
@@ -131,6 +136,7 @@ router.get(
 // PATCH /user
 router.patch(
   "/users/:id",
+  cors(),
   auth,
   userController.grantAccess("updateAny", "profile"),
   async (req, res) => {
@@ -178,6 +184,7 @@ router.patch(
 
 router.delete(
   "/users/:id",
+  cors(),
   auth,
   userController.grantAccess("deleteAny", "profile"),
   async (req, res) => {
@@ -200,6 +207,7 @@ router.delete(
 // PATCH /user
 router.patch(
   "/user",
+  cors(),
   auth,
   userController.grantAccess("updateAny", "profile"),
   async (req, res) => {
@@ -243,6 +251,7 @@ router.patch(
 
 router.delete(
   "/user",
+  cors(),
   auth,
   userController.grantAccess("deleteAny", "profile"),
   async (req, res) => {
