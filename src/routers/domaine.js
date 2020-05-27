@@ -5,6 +5,14 @@ const Domaine = require("../models/domaine");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
 
+const domains = require("../controllers/domainecontroller.js");
+router.get(
+  "/domaines/table/:id",
+  auth,
+  domains.findByTableId,
+
+  userController.grantAccess("readAny", "domaine")
+);
 // POST /domaines (Creat a new domaine)
 
 router.post(
@@ -94,7 +102,7 @@ router.patch(
     }
     const updates = Object.keys(req.body);
     const allowedUpdates = ["nameD", "description"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -102,7 +110,7 @@ router.patch(
     }
     try {
       const domaine = await Domaine.findById(req.params.id);
-      updates.forEach(update => (domaine[update] = req.body[update]));
+      updates.forEach((update) => (domaine[update] = req.body[update]));
       await domaine.save();
       // const domaine = await Domaine.findByIdAndUpdate(req.params.id, req.body, {
       //   new: true,
@@ -127,7 +135,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["tables"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -164,7 +172,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["processus"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -201,7 +209,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["tables"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -238,7 +246,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["processus"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -318,7 +326,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["nameD", "description"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -326,7 +334,7 @@ router.patch(
     }
     try {
       const domaine = await Domaine.findOne(req.query.nameD);
-      updates.forEach(update => (domaine[update] = req.body[update]));
+      updates.forEach((update) => (domaine[update] = req.body[update]));
       await domaine.save();
       // const domaine = await Domaine.findByIdAndUpdate(req.params.id, req.body, {
       //   new: true,
@@ -351,7 +359,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["tables"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -385,7 +393,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["processus"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -419,7 +427,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["tables"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {
@@ -453,7 +461,7 @@ router.patch(
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["processus"];
-    const isValidOperation = updates.every(update => {
+    const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
     });
     if (!isValidOperation) {

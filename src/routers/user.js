@@ -180,7 +180,6 @@ router.patch(
 
 router.delete(
   "/users/:id",
-
   auth,
   userController.grantAccess("deleteAny", "profile"),
   async (req, res) => {
@@ -203,7 +202,6 @@ router.delete(
 // PATCH /user
 router.patch(
   "/user",
-
   auth,
   userController.grantAccess("updateAny", "profile"),
   async (req, res) => {
@@ -247,7 +245,6 @@ router.patch(
 
 router.delete(
   "/user",
-
   auth,
   userController.grantAccess("deleteAny", "profile"),
   async (req, res) => {
