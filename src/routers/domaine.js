@@ -5,7 +5,7 @@ const Domaine = require("../models/domaine");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
 
-const domains = require("../controllers/domainecontroller.js");
+const domains = require("../controllers/domaineController.js");
 router.get(
   "/domaines/table/:id",
   auth,

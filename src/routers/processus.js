@@ -5,7 +5,7 @@ const Processus = require("../models/processus");
 const auth = require("../middleware/auth");
 const userController = require("../controllers/userController");
 
-const proces = require("../controllers/processuscontroller.js");
+const proces = require("../controllers/processusController.js");
 router.get(
   "/processus/table/:id",
   auth,
