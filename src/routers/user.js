@@ -7,6 +7,15 @@ const userController = require("../controllers/userController");
 
 // POST /users
 
+router.get("/", async (req, res) => {
+  try {
+    const welcome = "welcom to Node API";
+    res.send(welcome);
+  } catch (e) {
+    res.status(500);
+  }
+});
+
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
   try {
@@ -71,6 +80,7 @@ router.get(
 // GET /users
 router.get(
   "/users",
+  auth,
 
   userController.grantAccess("readAny", "profile"),
   async (req, res) => {
