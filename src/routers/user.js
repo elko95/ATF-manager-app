@@ -72,7 +72,6 @@ router.get(
 router.get(
   "/users",
 
-  auth,
   userController.grantAccess("readAny", "profile"),
   async (req, res) => {
     try {
