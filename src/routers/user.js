@@ -7,7 +7,7 @@ const userController = require("../controllers/userController");
 
 // POST /users
 
-router.get("", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const welcome = "welcom to Node API";
     res.send(welcome);
